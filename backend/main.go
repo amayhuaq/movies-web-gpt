@@ -7,7 +7,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	_ "github.com/lib/pq"
+	_ "modernc.org/sqlite"
 )
 
 var db *sql.DB
@@ -15,7 +15,8 @@ var db *sql.DB
 func main() {
 	var err error
 	// Set up the database connection
-	db, err = sql.Open("postgres", "user=postgres dbname=movies password=admin sslmode=disable")
+	// db, err = sql.Open("postgres", "user=postgres dbname=movies password=admin sslmode=disable")
+	db, err := sql.Open("sqlite", "./db_data_sqlite.db")
 	if err != nil {
 		log.Fatal(err)
 	}

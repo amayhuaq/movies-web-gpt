@@ -79,7 +79,7 @@ func AddMovieHandler(db *sql.DB) http.HandlerFunc {
 		var movieID int
 		err = tx.QueryRow(`
             INSERT INTO movies (title, release_date, runtime, mpaa_rating, description, image, created_at, updated_at) 
-            VALUES ($1, $2, $3, $4, $5, $6, NOW(), NOW()) 
+            VALUES ($1, $2, $3, $4, $5, $6, datetime('now'), datetime('now')) 
             RETURNING id`,
 			movie.Title, movie.ReleaseDate, movie.Runtime, movie.MPAARating, movie.Description, movie.Image).Scan(&movieID)
 		if err != nil {
